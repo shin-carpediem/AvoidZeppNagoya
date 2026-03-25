@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B5511E9190B03C81D4B58DC /* TimeWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D121198910AC0D90EC04FA8F /* TimeWindow.swift */; };
 		126146A4DD3615F0620A16EA /* NotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF37848F098E165B9FE12BB1 /* NotificationScheduler.swift */; };
 		1285A4A5870562FB76006AA2 /* ZeppEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D7A5ECFD0037301021D717 /* ZeppEvent.swift */; };
 		182E52F50499221C13EC7D02 /* ScheduleFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07A8246B46168B279DA5641 /* ScheduleFetcher.swift */; };
@@ -22,9 +23,11 @@
 		71DEDBD4D9545A2D396FB964 /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21149D6B243AEEE7628200DA /* EventStore.swift */; };
 		77F74E97031F852496EAF575 /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21149D6B243AEEE7628200DA /* EventStore.swift */; };
 		7F6E01E318B439CF0956FD65 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = D026029CB7BBC17A996FA80E /* SwiftSoup */; };
+		830571CDC7F45D0437229B0F /* TimeWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D121198910AC0D90EC04FA8F /* TimeWindow.swift */; };
 		93423ABF04FC1D3D659BAD03 /* AvoidZeppNagoyaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69293B35560CDA7DE4BFE6E6 /* AvoidZeppNagoyaApp.swift */; };
 		969A99909F7A91C170A849B8 /* AvoidZeppNagoyaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BD580FBBE672CD69BDFA2A /* AvoidZeppNagoyaApp.swift */; };
 		9830D3B10F1CB77B0DF92EE7 /* ScheduleFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07A8246B46168B279DA5641 /* ScheduleFetcher.swift */; };
+		9C43A3BD1AB912BF073E8762 /* TimeWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D121198910AC0D90EC04FA8F /* TimeWindow.swift */; };
 		B0462C15AE9FE3ADBCD32F46 /* ZeppEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D7A5ECFD0037301021D717 /* ZeppEvent.swift */; };
 		CA2B803762827AC0CD967443 /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21149D6B243AEEE7628200DA /* EventStore.swift */; };
 		F3181714922090080B7F7941 /* AvoidZeppNagoyaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4DEF13E5AF70F5CD44EF79 /* AvoidZeppNagoyaApp.swift */; };
@@ -46,6 +49,7 @@
 		9E812ADA0778ABF97BAAC493 /* AvoidZeppNagoya.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AvoidZeppNagoya.entitlements; sourceTree = "<group>"; };
 		BD0FB79D7AE7E30BE298462B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BF37848F098E165B9FE12BB1 /* NotificationScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationScheduler.swift; sourceTree = "<group>"; };
+		D121198910AC0D90EC04FA8F /* TimeWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeWindow.swift; sourceTree = "<group>"; };
 		D8868EF6093ADF2EFE6A0E10 /* AvoidZeppNagoya.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AvoidZeppNagoya.entitlements; sourceTree = "<group>"; };
 		F07A8246B46168B279DA5641 /* ScheduleFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleFetcher.swift; sourceTree = "<group>"; };
 		F09A806A4D1CC48230580339 /* AvoidZeppNagoya.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = AvoidZeppNagoya.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,6 +123,7 @@
 				21149D6B243AEEE7628200DA /* EventStore.swift */,
 				BF37848F098E165B9FE12BB1 /* NotificationScheduler.swift */,
 				F07A8246B46168B279DA5641 /* ScheduleFetcher.swift */,
+				D121198910AC0D90EC04FA8F /* TimeWindow.swift */,
 				63D7A5ECFD0037301021D717 /* ZeppEvent.swift */,
 			);
 			path = Shared;
@@ -250,6 +255,7 @@
 				CA2B803762827AC0CD967443 /* EventStore.swift in Sources */,
 				3516CA9A3A2F7096142B17EE /* NotificationScheduler.swift in Sources */,
 				504E493D49F37E3C6FEF4AE3 /* ScheduleFetcher.swift in Sources */,
+				830571CDC7F45D0437229B0F /* TimeWindow.swift in Sources */,
 				2ACC6ADF5FA2BFBB60751DE7 /* ZeppEvent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -263,6 +269,7 @@
 				71DEDBD4D9545A2D396FB964 /* EventStore.swift in Sources */,
 				1E55689FF71F030E76FD105E /* NotificationScheduler.swift in Sources */,
 				182E52F50499221C13EC7D02 /* ScheduleFetcher.swift in Sources */,
+				0B5511E9190B03C81D4B58DC /* TimeWindow.swift in Sources */,
 				1285A4A5870562FB76006AA2 /* ZeppEvent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,6 +283,7 @@
 				77F74E97031F852496EAF575 /* EventStore.swift in Sources */,
 				126146A4DD3615F0620A16EA /* NotificationScheduler.swift in Sources */,
 				9830D3B10F1CB77B0DF92EE7 /* ScheduleFetcher.swift in Sources */,
+				9C43A3BD1AB912BF073E8762 /* TimeWindow.swift in Sources */,
 				B0462C15AE9FE3ADBCD32F46 /* ZeppEvent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

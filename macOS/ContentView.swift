@@ -46,7 +46,7 @@ struct ContentView: View {
                         Text("取得中…").foregroundStyle(.secondary)
                     }
                 } else {
-                    Button("今すぐ更新") { Task { await store.refresh() } }
+                    Button("今すぐ更新") { Task { await store.refresh(force: true) } }
                 }
 
                 if let lastFetch = store.lastFetch {

@@ -50,6 +50,7 @@ struct NotificationScheduler {
 
         for n in notifications {
             guard n.date > now else { continue }
+            guard TimeWindow.isActive(n.date) else { continue }  // 平日 17〜21 時以外はスキップ
 
             let content = UNMutableNotificationContent()
             content.title = n.title
