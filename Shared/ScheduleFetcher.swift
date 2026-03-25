@@ -60,7 +60,16 @@ actor ScheduleFetcher {
                 days.insert(day)
             }
         }
-        return Array(days).sorted()
+        // 平日（月〜金）のイベントのみ対象とし、週末はスクレイピングしない
+        let jst = TimeZone(identifier: "Asia/Tokyo")!
+        var jstCalendar = Calendar(identifier: .gregorian)
+        jstCalendar.timeZone = jst
+        return Array(days).sorted().filter { day in
+            var comps = DateComponents(timeZone: jst, year: year, month: month, day: day)
+            guard let date = jstCalendar.date(from: comps) else { return false }
+            let weekday = jstCalendar.component(.weekday, from: date)
+            return weekday != 1 && weekday != 7  // 1=日曜, 7=土曜
+        }
     }
 
     private func fetchEventsForDay(year: Int, month: Int, day: Int) async throws -> [ZeppEvent] {
