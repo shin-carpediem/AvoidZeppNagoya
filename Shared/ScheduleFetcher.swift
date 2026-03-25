@@ -5,7 +5,7 @@ actor ScheduleFetcher {
     static let shared = ScheduleFetcher()
 
     private let baseURL = "https://www.zepp.co.jp/hall/nagoya/schedule/"
-    private let userAgent = "AvoidZeppNagoya/1.0 (contact: buru.aoshin@gmail.com)"
+    private let userAgent = "contact: buru.aoshin@gmail.com"
 
     /// 当月〜 monthsAhead ヶ月先までのイベントを取得
     func fetchEvents(monthsAhead: Int = 2) async throws -> [ZeppEvent] {
