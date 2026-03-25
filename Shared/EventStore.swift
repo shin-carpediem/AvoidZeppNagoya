@@ -29,9 +29,8 @@ final class EventStore: ObservableObject {
     }
 
     // MARK: - Refresh
-    /// - Parameter force: true のとき時間帯制限を無視して取得する（手動更新用）
-    func refresh(force: Bool = false) async {
-        guard force || TimeWindow.isActive() else { return }
+    func refresh() async {
+        guard TimeWindow.isActive() else { return }
         guard !isLoading else { return }
         isLoading = true
         lastError = nil
