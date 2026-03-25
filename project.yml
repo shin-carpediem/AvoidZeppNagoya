@@ -1,0 +1,76 @@
+name: AvoidZeppNagoya
+options:
+  bundleIdPrefix: com.avoidzeppnagoya
+  deploymentTarget:
+    iOS: "17.0"
+    macOS: "14.0"
+    watchOS: "10.0"
+  defaultConfig: Debug
+
+packages:
+  SwiftSoup:
+    url: https://github.com/scinfu/SwiftSoup
+    from: "2.7.5"
+
+targets:
+
+  # ─── iOS App ───────────────────────────────────────────────────────────────
+  AvoidZeppNagoya:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: Shared
+      - path: iOS
+    info:
+      path: iOS/Info.plist
+      properties:
+        CFBundleDisplayName: Avoid Zepp Nagoya
+        UILaunchScreen:
+          UIColorName: ""
+        UIBackgroundModes:
+          - fetch
+        BGTaskSchedulerPermittedIdentifiers:
+          - com.avoidzeppnagoya.refresh
+        NSUserNotificationsUsageDescription: "Zepp Nagoya の混雑時間帯をお知らせします。"
+    entitlements:
+      path: iOS/AvoidZeppNagoya.entitlements
+    dependencies:
+      - package: SwiftSoup
+
+  # ─── macOS App ─────────────────────────────────────────────────────────────
+  AvoidZeppNagoyaMac:
+    type: application
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources:
+      - path: Shared
+      - path: macOS
+    info:
+      path: macOS/Info.plist
+      properties:
+        CFBundleDisplayName: Avoid Zepp Nagoya
+        NSUserNotificationsUsageDescription: "Zepp Nagoya の混雑時間帯をお知らせします。"
+        NSHumanReadableCopyright: ""
+    entitlements:
+      path: macOS/AvoidZeppNagoya.entitlements
+    dependencies:
+      - package: SwiftSoup
+
+  # ─── watchOS App ───────────────────────────────────────────────────────────
+  AvoidZeppNagoyaWatch:
+    type: application
+    platform: watchOS
+    deploymentTarget: "10.0"
+    sources:
+      - path: Shared
+      - path: watchOS
+    info:
+      path: watchOS/Info.plist
+      properties:
+        CFBundleDisplayName: Avoid Zepp
+        WKApplication: true
+    entitlements:
+      path: watchOS/AvoidZeppNagoya.entitlements
+    dependencies:
+      - package: SwiftSoup
