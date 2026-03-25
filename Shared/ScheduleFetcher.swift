@@ -7,70 +7,19 @@ actor ScheduleFetcher {
     private let baseURL = "https://www.zepp.co.jp/hall/nagoya/schedule/"
     private let userAgent = "contact: buru.aoshin@gmail.com"
 
-    /// 当月〜 monthsAhead ヶ月先までのイベントを取得
-    func fetchEvents(monthsAhead: Int = 2) async throws -> [ZeppEvent] {
-        let calendar = Calendar.current
+    /// 当日分のイベントを取得
+    func fetchEvents() async throws -> [ZeppEvent] {
+        var jst = TimeZone(identifier: "Asia/Tokyo")!
+        var jstCalendar = Calendar(identifier: .gregorian)
+        jstCalendar.timeZone = jst
         let now = Date()
-        var allEvents: [ZeppEvent] = []
+        let comps = jstCalendar.dateComponents([.year, .month, .day], from: now)
+        guard let year = comps.year, let month = comps.month, let day = comps.day else { return [] }
 
-        for offset in 0..<monthsAhead {
-            guard let targetDate = calendar.date(byAdding: .month, value: offset, to: now) else { continue }
-            let comps = calendar.dateComponents([.year, .month], from: targetDate)
-            guard let year = comps.year, let month = comps.month else { continue }
-
-            let days = try await fetchEventDays(year: year, month: month)
-            for day in days {
-                let events = try await fetchEventsForDay(year: year, month: month, day: day)
-                allEvents.append(contentsOf: events)
-            }
-        }
-
-        // 過去イベントを除外して日時順にソート
-        return allEvents
-            .filter { $0.startTime > now }
-            .sorted { $0.startTime < $1.startTime }
+        return try await fetchEventsForDay(year: year, month: month, day: day)
     }
 
     // MARK: - Private
-
-    private func fetchEventDays(year: Int, month: Int) async throws -> [Int] {
-        guard let url = URL(string: "\(baseURL)?_y=\(year)&_m=\(month)") else { return [] }
-
-        var request = URLRequest(url: url)
-        request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
-        let (data, _) = try await URLSession.shared.data(for: request)
-        guard let html = String(data: data, encoding: .utf8) ?? String(data: data, encoding: .isoLatin1) else {
-            return []
-        }
-
-        let doc = try SwiftSoup.parse(html)
-        let cells = try doc.select(".event-calendar-date")
-
-        var days = Set<Int>()
-        for cell in cells.array() {
-            // イベントがある日は <a> リンクあり（disabled-date は <span>）
-            let links = try cell.select("a")
-            guard !links.isEmpty() else { continue }
-
-            let href = try links.first()!.attr("href")
-            // href 例: ?_y=2026&_m=3&_d=3
-            if let components = URLComponents(string: href),
-               let dayValue = components.queryItems?.first(where: { $0.name == "_d" })?.value,
-               let day = Int(dayValue) {
-                days.insert(day)
-            }
-        }
-        // 平日（月〜金）のイベントのみ対象とし、週末はスクレイピングしない
-        let jst = TimeZone(identifier: "Asia/Tokyo")!
-        var jstCalendar = Calendar(identifier: .gregorian)
-        jstCalendar.timeZone = jst
-        return Array(days).sorted().filter { day in
-            var comps = DateComponents(timeZone: jst, year: year, month: month, day: day)
-            guard let date = jstCalendar.date(from: comps) else { return false }
-            let weekday = jstCalendar.component(.weekday, from: date)
-            return weekday != 1 && weekday != 7  // 1=日曜, 7=土曜
-        }
-    }
 
     private func fetchEventsForDay(year: Int, month: Int, day: Int) async throws -> [ZeppEvent] {
         guard let url = URL(string: "\(baseURL)?_y=\(year)&_m=\(month)&_d=\(day)") else { return [] }
